@@ -1,5 +1,8 @@
 version: 2.1
 
+orbs: 
+  node: circleci/node@5.0.0
+
 jobs:
   test:
     machine:
@@ -7,7 +10,7 @@ jobs:
       
     steps:
       - checkout
-      - node/install-packages:
+      - node/install-packages
       - run:
           name: Run tests
           command: |
