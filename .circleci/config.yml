@@ -21,7 +21,7 @@ jobs:
                 -v ${HOME}:/home/circleci \
                 -w /home/circleci/project \
                 cimg/node:17.2.0 \
-                yarn install --immutable
+                yarn install
 
       - run:
           name: Run tests
