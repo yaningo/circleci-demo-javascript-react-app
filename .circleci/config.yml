@@ -15,7 +15,7 @@ jobs:
       - run:
           name: Run tests
           command: |
-              docker run -d \
+              docker run -it --rm \
                 -v ${CIRCLE_WORKING_DIRECTORY/#\~/$HOME}:/home/circleci/project \
                 --mount type=bind,source=/etc/passwd,target=/etc/passwd,readonly --mount type=bind,source=/etc/group,target=/etc/group,readonly -u $(id -u $USER):$(id -g $USER) \
                 -w /home/circleci/project \
@@ -25,7 +25,7 @@ jobs:
       - run:
           name: Build app
           command: |
-              docker run -d \
+              docker run -it --rm \
                 -v ${CIRCLE_WORKING_DIRECTORY/#\~/$HOME}:/home/circleci/project \
                 --mount type=bind,source=/etc/passwd,target=/etc/passwd,readonly --mount type=bind,source=/etc/group,target=/etc/group,readonly -u $(id -u $USER):$(id -g $USER) \
                 -w /home/circleci/project \
