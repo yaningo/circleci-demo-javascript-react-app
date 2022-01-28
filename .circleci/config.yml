@@ -17,8 +17,8 @@ jobs:
           name: Install
           command: |
               docker run -it --rm \
-                -v ${HOME}:/home/circleci \
                 --mount type=bind,source=/etc/passwd,target=/etc/passwd,readonly --mount type=bind,source=/etc/group,target=/etc/group,readonly -u $(id -u $USER):$(id -g $USER) \
+                -v ${HOME}:/home/circleci \
                 -w /home/circleci/project \
                 cimg/node:17.2.0 \
                 yarn install --immutable
@@ -27,8 +27,8 @@ jobs:
           name: Run tests
           command: |
               docker run -it --rm \
-                -v ${HOME}:/home/circleci \
                 --mount type=bind,source=/etc/passwd,target=/etc/passwd,readonly --mount type=bind,source=/etc/group,target=/etc/group,readonly -u $(id -u $USER):$(id -g $USER) \
+                -v ${HOME}:/home/circleci \
                 -w /home/circleci/project \
                 cimg/node:17.2.0 \
                 yarn test
@@ -37,8 +37,8 @@ jobs:
           name: Build app
           command: |
               docker run -it --rm \
-                -v ~/${HOME}:/home/circleci \
                 --mount type=bind,source=/etc/passwd,target=/etc/passwd,readonly --mount type=bind,source=/etc/group,target=/etc/group,readonly -u $(id -u $USER):$(id -g $USER) \
+                -v ${HOME}:/home/circleci \
                 -w /home/circleci/project \
                 cimg/node:17.2.0 \
                 yarn build
