@@ -17,6 +17,7 @@ jobs:
           command: |
               docker run -d \
                 -v ${CIRCLE_WORKING_DIRECTORY/#\~/$HOME}:/home/circleci/project \
+                --mount type=bind,source=/etc/passwd,target=/etc/passwd,readonly --mount type=bind,source=/etc/group,target=/etc/group,readonly -u $(id -u $USER):$(id -g $USER) \
                 -w /home/circleci/project \
                 cimg/node:17.2.0 \
                 yarn test
@@ -26,6 +27,7 @@ jobs:
           command: |
               docker run -d \
                 -v ${CIRCLE_WORKING_DIRECTORY/#\~/$HOME}:/home/circleci/project \
+                --mount type=bind,source=/etc/passwd,target=/etc/passwd,readonly --mount type=bind,source=/etc/group,target=/etc/group,readonly -u $(id -u $USER):$(id -g $USER) \
                 -w /home/circleci/project \
                 cimg/node:17.2.0 \
                 yarn build
