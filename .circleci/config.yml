@@ -10,7 +10,8 @@ jobs:
       
     steps:
       - checkout
-      - node/install-packages
+      - node/install-packages:
+          pkg-manager: yarn
       - run:
           name: Run tests
           command: |
@@ -18,8 +19,17 @@ jobs:
                 -v ${CIRCLE_WORKING_DIRECTORY/#\~/$HOME}:/home/circleci/project \
                 -w /home/circleci/project \
                 cimg/node:17.2.0 \
-                npm run test
+                yarn test
 
+      - run:
+          name: Build app
+          command: |
+              docker run -it --rm \
+                -v ${CIRCLE_WORKING_DIRECTORY/#\~/$HOME}:/home/circleci/project \
+                -w /home/circleci/project \
+                cimg/node:17.2.0 \
+                yarn build
+                
 workflows:
   on_commit:
     jobs:
