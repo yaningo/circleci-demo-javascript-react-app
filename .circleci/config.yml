@@ -17,7 +17,7 @@ jobs:
           command: |
               docker run -it --rm \
                 -v ${CIRCLE_WORKING_DIRECTORY/#\~/$HOME}:/home/circleci/project \
-                -v ${CIRCLE_WORKING_DIRECTORY/#\~/$HOME}/src:/home/circleci/project/src
+                -v ${CIRCLE_WORKING_DIRECTORY/#\~/$HOME}/src:/home/circleci/project/src \
                 --mount type=bind,source=/etc/passwd,target=/etc/passwd,readonly --mount type=bind,source=/etc/group,target=/etc/group,readonly -u $(id -u $USER):$(id -g $USER) \
                 -w /home/circleci/project \
                 cimg/node:17.2.0 \
