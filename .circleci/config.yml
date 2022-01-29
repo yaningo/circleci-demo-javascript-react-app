@@ -14,7 +14,7 @@ jobs:
 #           pkg-manager: yarn
 
       - run:
-          name: Install and test
+          name: Install
           command: |
               docker run -it --rm \
                 --mount type=bind,source=/etc/passwd,target=/etc/passwd,readonly \
@@ -53,4 +53,4 @@ workflows:
   on_commit:
     jobs:
       - install-test-build:
-          name: Install, test, and build 
+          name: Install -> Test -> Build 
