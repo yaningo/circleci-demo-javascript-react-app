@@ -4,7 +4,7 @@ orbs:
   node: circleci/node@5.0.0
 
 jobs:
-  test:
+  install-test-build:
     machine:
       image: ubuntu-2004:202101-01
       
@@ -17,27 +17,33 @@ jobs:
           name: Install and test
           command: |
               docker run -it --rm \
-                --mount type=bind,source=/etc/passwd,target=/etc/passwd,readonly --mount type=bind,source=/etc/group,target=/etc/group,readonly -u $(id -u $USER):$(id -g $USER) \
+                --mount type=bind,source=/etc/passwd,target=/etc/passwd,readonly \
+                --mount type=bind,source=/etc/group,target=/etc/group,readonly \
+                -u $(id -u $USER):$(id -g $USER) \
                 -v ${HOME}:/home/circleci \
                 -w /home/circleci/project \
                 cimg/node:17.2.0 \
-                yarn install && yarn test
+                yarn install
 
-#       - run:
-#           name: Run tests
-#           command: |
-#               docker run -it --rm \
-#                 --mount type=bind,source=/etc/passwd,target=/etc/passwd,readonly --mount type=bind,source=/etc/group,target=/etc/group,readonly -u $(id -u $USER):$(id -g $USER) \
-#                 -v ${HOME}:/home/circleci \
-#                 -w /home/circleci/project \
-#                 cimg/node:17.2.0 \
-#                 yarn test --watchAll=false
+      - run:
+          name: Run tests
+          command: |
+              docker run -it --rm \
+                --mount type=bind,source=/etc/passwd,target=/etc/passwd,readonly \
+                --mount type=bind,source=/etc/group,target=/etc/group,readonly \
+                -u $(id -u $USER):$(id -g $USER) \
+                -v ${HOME}:/home/circleci \
+                -w /home/circleci/project \
+                cimg/node:17.2.0 \
+                yarn test --watchAll=false
 
       - run:
           name: Build app
           command: |
               docker run -it --rm \
-                --mount type=bind,source=/etc/passwd,target=/etc/passwd,readonly --mount type=bind,source=/etc/group,target=/etc/group,readonly -u $(id -u $USER):$(id -g $USER) \
+                --mount type=bind,source=/etc/passwd,target=/etc/passwd,readonly \
+                --mount type=bind,source=/etc/group,target=/etc/group,readonly \
+                -u $(id -u $USER):$(id -g $USER) \
                 -v ${HOME}:/home/circleci \
                 -w /home/circleci/project \
                 cimg/node:17.2.0 \
@@ -46,4 +52,5 @@ jobs:
 workflows:
   on_commit:
     jobs:
-      - test
+      - install-test-build:
+          name: Install, test, and build 
