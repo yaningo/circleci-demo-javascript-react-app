@@ -49,6 +49,10 @@ jobs:
                 cimg/node:17.2.0 \
                 yarn build
                 
+      - run:
+          name: List content
+          command: ls -al build/static
+                
 workflows:
   on_commit:
     jobs:
