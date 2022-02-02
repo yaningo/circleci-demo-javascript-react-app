@@ -26,7 +26,8 @@ jobs:
       - run:
           command: yarn build
           name: Build app
-          environment: NODE_OPTIONS='--max_old_space_size=64 --openssl-legacy-provider'
+          environment:
+            NODE_OPTIONS='--max_old_space_size=64 --openssl-legacy-provider'
       - persist_to_workspace:
           root: ~/project
           paths:
