@@ -21,10 +21,10 @@ jobs:
       - node/install-packages:
           pkg-manager: yarn
       - run:
-          command: yarn test
+          command: yarn —-max-old-space-size=256 test
           name: Run tests
       - run:
-          command: yarn build
+          command: yarn —-max_old_space_size=256build
           name: Build app
       - persist_to_workspace:
           root: ~/project
