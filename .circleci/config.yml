@@ -7,7 +7,7 @@ jobs:
   build_and_test:
     docker:
       - image: cimg/node:17.2.0
-        environment: NODE_OPTIONS=--max-old-space-size=4096
+        environment: NODE_OPTIONS=--max-old-space-size=512
     steps:
       - run:
           command: |
