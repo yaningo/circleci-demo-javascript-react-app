@@ -7,13 +7,12 @@ jobs:
   build_and_test:
     docker:
       - image: cimg/node:17.2.0
-        environment: NODE_OPTIONS=--max-old-space-size=512
+        environment: NODE_OPTIONS=--max-old-space-size=256
     steps:
       - run:
           command: |
               while true; do
-                sleep 3
-                ps auxwwf
+                node --expose-gc
                 echo "======"
               done
           background: true
@@ -21,10 +20,10 @@ jobs:
       - node/install-packages:
           pkg-manager: yarn
       - run:
-          command: yarn —-max-old-space-size=256 test
+          command: yarn test
           name: Run tests
       - run:
-          command: yarn —-max_old_space_size=256build
+          command: yarn build
           name: Build app
       - persist_to_workspace:
           root: ~/project
