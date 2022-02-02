@@ -9,8 +9,8 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "export NODE_OPTIONS='--max_old_space_size=64 --openssl-legacy-provider'; react-scripts build",
-    "test": "export NODE_OPTIONS='--max_old_space_size=64'; react-scripts test --maxWorkers=2 --ci --coverage --reporters=default --reporters=jest-junit",
+    "build": "export NODE_OPTIONS='--max_old_space_size=128 --openssl-legacy-provider'; react-scripts build",
+    "test": "export NODE_OPTIONS='--max_old_space_size=128'; react-scripts test --maxWorkers=2 --ci --coverage --reporters=default --reporters=jest-junit",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
