@@ -1,4 +1,6 @@
-version: "3"
+version: "3.9"
+volumes:
+  home/circleci:
   
 services:
   frontend:
@@ -19,5 +21,3 @@ services:
         target: /home/circleci
     working_dir: /home/circleci/project
     command: yarn install
-volumes:
-  "home/circleci":
