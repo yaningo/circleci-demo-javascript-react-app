@@ -3,7 +3,7 @@ services:
   frontend:
     image: cimg/node:17.2.0
     container_name: mycontainer
-    user: "$(id -u $USER):$(id -g $USER)"
+    user: "${LE_USER}:${LE_GRP}"
     volumes:
       - type: bind
         source: /etc/passwd
