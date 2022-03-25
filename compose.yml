@@ -1,9 +1,9 @@
 version: "3.9"
 
 volumes:
-  - "/home/circleci:/home/circleci"
-  - "/etc/passwd:/etc/passwd"
-  - "/etc/group:/etc/group"
+  /home/circleci:
+  /etc/passwd:
+  /etc/group:
   
 services:
   frontend:
