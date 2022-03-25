@@ -1,0 +1,26 @@
+version: "3.9"
+services:
+  frontend:
+    image: cimg/node:17.2.0
+    container_name: mycontainer
+    user: "${UID}:${GID}"
+    volumes:
+      - type: bind
+        source: /etc/passwd
+        target: /etc/passwd
+        read_only: true
+      - type: bind
+        source: /etc/group
+        target: /etc/group
+        read_only: true
+      - type: volume
+        source: ${HOME}
+        target: /home/circleci
+        read_only: true
+    working_dir: /home/circleci/project 
+volumes: 
+  /etc/passwd:
+  /etc/group:
+  
+command: >
+  yarn install
