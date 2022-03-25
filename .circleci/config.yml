@@ -18,7 +18,7 @@ jobs:
       - run:
           name: Install
           command: |
-              docker-compose -f compose.yml mycontainer
+              docker-compose run -f compose.yml mycontainer
 
 #       - run:
 #           name: Run tests
