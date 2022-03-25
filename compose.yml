@@ -1,7 +1,4 @@
-version: "3.9"
-
-volumes:
-  /home/circleci:
+version: "3"
   
 services:
   frontend:
