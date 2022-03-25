@@ -2,8 +2,6 @@ version: "3.9"
 
 volumes:
   /home/circleci:
-  /etc/passwd:
-  /etc/group:
   
 services:
   frontend:
