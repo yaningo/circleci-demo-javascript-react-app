@@ -19,6 +19,3 @@ services:
         read_only: true
     working_dir: /home/circleci/project
     command: yarn install
-volumes: 
-  /etc/passwd:
-  /etc/group:
