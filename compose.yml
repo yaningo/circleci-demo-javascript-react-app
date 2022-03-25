@@ -1,4 +1,10 @@
 version: "3.9"
+
+volumes:
+  - "/home/circleci:/home/circleci"
+  - "/etc/passwd:/etc/passwd"
+  - "/etc/group:/etc/group"
+  
 services:
   frontend:
     image: cimg/node:17.2.0
@@ -13,9 +19,6 @@ services:
         source: /etc/group
         target: /etc/group
         read_only: true
-      - type: volume
-        source: /home/circleci
-        target: /home/circleci
-        read_only: true
+
     working_dir: /home/circleci/project
     command: yarn install
