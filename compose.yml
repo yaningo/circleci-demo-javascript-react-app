@@ -20,6 +20,5 @@ services:
 
     working_dir: /home/circleci/project
     command: yarn install
-
 volumes:
-  "home/circleci"
+  "home/circleci":
