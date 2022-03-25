@@ -17,10 +17,8 @@ services:
         source: ${HOME}
         target: /home/circleci
         read_only: true
-    working_dir: /home/circleci/project 
+    working_dir: /home/circleci/project
+    command: yarn install
 volumes: 
   /etc/passwd:
   /etc/group:
-  
-command: >
-  yarn install
