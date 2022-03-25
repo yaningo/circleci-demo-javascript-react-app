@@ -14,7 +14,7 @@ services:
         target: /etc/group
         read_only: true
       - type: volume
-        source: ${HOME}
+        source: /home/circleci
         target: /home/circleci
         read_only: true
     working_dir: /home/circleci/project
