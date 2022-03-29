@@ -4,51 +4,35 @@ orbs:
   node: circleci/node@5.0.0
 
 jobs:
-  install:
+  next-gen:
     docker:
 #       - image: cimg/base:stable
        - image: circleci/buildpack-deps
       
     steps:
       - checkout
-#       - node/install-packages:
-#           pkg-manager: yarn
-
       -  setup_remote_docker
-
       - run:
-          name: Install
+          name: Docker run
           command: |
+              docker-compose -version
               docker-compose -f compose.yml run frontend
 
-#       - run:
-#           name: Run tests
-#           command: |
-#               docker run -it --rm \
-#                 --mount type=bind,source=/etc/passwd,target=/etc/passwd,readonly \
-#                 --mount type=bind,source=/etc/group,target=/etc/group,readonly \
-#                 -u $(id -u $USER):$(id -g $USER) \
-#                 -v ${HOME}:/home/circleci \
-#                 -w /home/circleci/project \
-#                 cimg/node:17.2.0 \
-#                 yarn test --watchAll=false
 
-#       - run:
-#           name: Build app
-#           command: |
-#               docker run -it --rm \
-#                 --mount type=bind,source=/etc/passwd,target=/etc/passwd,readonly \
-#                 --mount type=bind,source=/etc/group,target=/etc/group,readonly \
-#                 -u $(id -u $USER):$(id -g $USER) \
-#                 -v ${HOME}:/home/circleci \
-#                 -w /home/circleci/project \
-#                 cimg/node:17.2.0 \
-#                 yarn build
-                
-#       - run:
-#           name: List content
-#           command: ls -al build/static
-                
+  legacy:
+    docker:
+       - image: circleci/buildpack-deps
+      
+    steps:
+      - checkout
+      - setup_remote_docker
+      - run:
+          name: Docker run
+          command: |
+              docker-compose -version
+              docker-compose -f compose.yml run frontend
+
+
 workflows:
   on_commit:
     jobs:
