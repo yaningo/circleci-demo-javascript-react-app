@@ -20,7 +20,7 @@ jobs:
           command: |
               LE_USER=$(id -u $USER)
               LE_GRP=$(id -g $USER)
-              docker-compose -f compose.yml run mycontainer
+              docker-compose -f compose.yml run frontend
 
 #       - run:
 #           name: Run tests
