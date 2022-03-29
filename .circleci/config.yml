@@ -14,7 +14,7 @@ jobs:
       - run:
           name: Docker run
           command: |
-              docker-compose -v
+              docker-compose --version
               docker-compose -f compose.yml run frontend
 
 
@@ -28,7 +28,7 @@ jobs:
       - run:
           name: Docker run
           command: |
-              docker-compose -v
+              docker-compose --version
               docker-compose -f compose.yml run frontend
 
 
