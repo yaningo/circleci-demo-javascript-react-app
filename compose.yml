@@ -1,6 +1,5 @@
 version: "3.9"
-volumes:
-  /home/circleci:
+
 services:
   frontend:
     image: cimg/node:17.2.0
