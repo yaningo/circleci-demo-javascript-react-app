@@ -15,7 +15,7 @@ jobs:
           name: Docker run
           command: |
               docker-compose --version
-              docker-compose -f compose.yml run frontend
+              docker-compose --verbose -f compose.yml run frontend
 
 
   legacy:
