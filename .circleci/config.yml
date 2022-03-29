@@ -36,5 +36,5 @@ jobs:
 workflows:
   on_commit:
     jobs:
-      - install:
-          name: Install
+      - next-gen
+      - legacy
